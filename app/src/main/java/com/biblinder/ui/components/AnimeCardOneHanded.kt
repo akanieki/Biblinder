@@ -1,14 +1,16 @@
-package com.biblinder.ui
+package com.biblinder.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.biblinder.data.Anime
+import com.biblinder.data.model.Anime
 
 @Composable
 fun AnimeCardOneHanded(
@@ -27,12 +29,16 @@ fun AnimeCardOneHanded(
     ) {
         Column(
             verticalArrangement = Arrangement.Bottom,
-            modifier = Modifier.fillMaxWidth().padding(16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
         ) {
             AsyncImage(
                 model = anime.imageUrl,
                 contentDescription = anime.title,
-                modifier = Modifier.fillMaxWidth().height(250.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.dp)
             )
             Spacer(Modifier.height(12.dp))
             Text(anime.title, style = MaterialTheme.typography.titleLarge)
@@ -45,12 +51,18 @@ fun AnimeCardOneHanded(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "MAL: ${anime.malScore}", color = MaterialTheme.colorScheme.tertiary)
+                Text(
+                    text = "MAL: ${anime.malScore}",
+                    color = MaterialTheme.colorScheme.tertiary
+                )
                 Box {
                     IconButton(onClick = { expanded = true }) {
                         Icon(Icons.Default.Star, contentDescription = "Rate")
                     }
-                    DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                    DropdownMenu(
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false }
+                    ) {
                         for (i in 0..10) {
                             val score = i / 2f
                             DropdownMenuItem(
