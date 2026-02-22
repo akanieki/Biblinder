@@ -1,6 +1,8 @@
 <resources>
-    <style name="Theme.Material3.Dark.NoActionBar" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.Biblinder" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">#A3E635</item>
+        <item name="colorPrimaryVariant">#A3E635</item>
+        <item name="colorOnPrimary">#121212</item>
         <item name="android:statusBarColor">#121212</item>
         <item name="android:windowBackground">#121212</item>
     </style>
