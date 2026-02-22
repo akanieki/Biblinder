@@ -3,6 +3,18 @@ package com.biblinder.ui.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+// Durum (State) değişimi için kritik importlar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+// Hizalama ve Ölçü (Modifier, Alignment, dp) importları
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+// İkon importları
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.EmojiEvents
+import androidx.compose.material.icons.filled.List
+// Diğer proje dosyaları
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.biblinder.swipe.SwipeCard
 import com.biblinder.swipe.SwipeViewModel
