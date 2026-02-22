@@ -1,10 +1,14 @@
 package com.biblinder.ui.screens
 
-import androidx.compose.material3.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.biblinder.data.api.JikanRepository
 import kotlinx.coroutines.flow.*
 
@@ -17,14 +21,20 @@ fun SearchScreen(repo: JikanRepository, onAddAnime: (String) -> Unit) {
         snapshotFlow { query }
             .debounce(500)
             .distinctUntilChanged()
-            .collect {
-                if (it.isNotEmpty()) {
-                    results = repo.fetchPopular().filter { a -> a.title.contains(it, true) }.map { a -> a.title }
+            .collect { q ->
+                if (q.isNotEmpty()) {
+                    results = repo.fetchPopular()
+                        .filter { a -> a.title.contains(q, ignoreCase = true) }
+                        .map { a -> a.title }
                 }
             }
     }
 
-    Column(Modifier.fillMaxSize().padding(16.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
         OutlinedTextField(
             value = query,
             onValueChange = { query = it },
