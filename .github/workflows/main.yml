@@ -1,4 +1,4 @@
-name: Biblinder APK Generator
+name: Biblinder APK Generators
 on: [push]
 
 jobs:
