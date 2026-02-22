@@ -21,11 +21,11 @@ fun SearchScreen(repo: JikanRepository, onAddAnime: (String) -> Unit) {
         snapshotFlow { query }
             .debounce(500)
             .distinctUntilChanged()
-            .collect { q ->
+            .collect { q: String ->
                 if (q.isNotEmpty()) {
-                    results = repo.fetchPopular()
-                        .filter { a -> a.title.contains(q, ignoreCase = true) }
-                        .map { a -> a.title }
+                    results = repo.fetchMixed()
+                        .filter { anime -> anime.title.contains(q, ignoreCase = true) }
+                        .map { anime -> anime.title }
                 }
             }
     }
