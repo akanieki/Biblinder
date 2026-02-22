@@ -3,7 +3,7 @@ package com.biblinder.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.biblinder.data.api.JikanRepository
-import com.biblinder.data.api.SyncRepository
+// import com.biblinder.data.api.SyncRepository // AppModule'da olmadığı için şimdilik kapattık
 import com.biblinder.data.local.AnimeDao
 import com.biblinder.data.local.AnimeEntity
 import com.biblinder.data.model.Anime
@@ -16,8 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val jikanRepository: JikanRepository,
-    private val dao: AnimeDao,
-    private val syncRepository: SyncRepository
+    private val dao: AnimeDao
+    // private val syncRepository: SyncRepository // Şimdilik kapattık
 ) : ViewModel() {
 
     private val _animePool = MutableStateFlow<List<Anime>>(emptyList())
@@ -57,18 +57,18 @@ class MainViewModel @Inject constructor(
             listType = action.name
         )
 
-        // Save locally + sync remotely
+        // Sadece yerel veritabanına kaydet
         viewModelScope.launch {
             dao.insert(entity)
-            syncRepository.pushUpdate(entity, /* user-preferred provider */ com.biblinder.data.api.SyncProvider.AniList, /* token */ "Bearer ...")
+            // syncRepository.pushUpdate(...) // Uzak sunucu senkronizasyonu şimdilik kapalı
         }
 
-        // Move to next
+        // Sonrakine geç
         val next = currentIndex.value + 1
         if (next < _animePool.value.size) {
             currentIndex.value = next
         } else {
-            // fetch more content when depleted
+            // Havuz bitince yenisini çek
             viewModelScope.launch { loadInitialPool() }
         }
     }
