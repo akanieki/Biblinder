@@ -9,7 +9,7 @@ import com.biblinder.data.local.BiblinderDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext // <-- EKSİK OLAN KİMLİK KARTI BURADA
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,13 +29,13 @@ object AppModule {
     fun provideApiService(retrofit: Retrofit): JikanApiService =
         retrofit.create(JikanApiService::class.java)
 
-    // @ApplicationContext eklentisi olmadan Hilt bu veritabanını kuramaz
     @Provides @Singleton
-    fun provideDatabase(@ApplicationContext app: Context): BiblinderDatabase = 
+    fun provideDatabase(@ApplicationContext app: Context): BiblinderDatabase =
         Room.databaseBuilder(app, BiblinderDatabase::class.java, "biblinder.db").build()
 
     @Provides fun provideDao(db: BiblinderDatabase): AnimeDao = db.animeDao()
 
+    // --- İŞTE BURASI DÜZELDİ: ARTIK DAO DA İÇERİ GİRİYOR ---
     @Provides @Singleton
-    fun provideRepository(api: JikanApiService) = JikanRepository(api)
+    fun provideRepository(api: JikanApiService, dao: AnimeDao) = JikanRepository(api, dao)
 }
