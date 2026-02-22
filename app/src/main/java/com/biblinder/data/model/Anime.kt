@@ -6,5 +6,7 @@ data class Anime(
     val synopsis: String,
     val imageUrl: String,
     val malScore: Double?,
-    val isWatching: Boolean = false
+    val personalScore: Float? = null,
+    val isWatching: Boolean = false,
+    val broadcast: String? = null
 )
