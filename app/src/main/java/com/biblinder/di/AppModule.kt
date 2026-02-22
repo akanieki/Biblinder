@@ -35,7 +35,9 @@ object AppModule {
 
     @Provides fun provideDao(db: BiblinderDatabase): AnimeDao = db.animeDao()
 
-    // --- İŞTE BURASI DÜZELDİ: ARTIK DAO DA İÇERİ GİRİYOR ---
     @Provides @Singleton
-    fun provideRepository(api: JikanApiService, dao: AnimeDao) = JikanRepository(api, dao)
+    fun provideRepository(
+        api: JikanApiService, 
+        dao: AnimeDao // <--- VİDEODAKİ HATANIN ÇÖZÜMÜ BURASI!
+    ) = JikanRepository(api, dao)
 }
