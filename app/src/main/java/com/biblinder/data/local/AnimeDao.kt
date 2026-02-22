@@ -1,14 +1,17 @@
 package com.biblinder.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface AnimeDao {
-    @Query("SELECT * FROM anime_table") // AnimeEntity içindeki tablo adın farklıysa burayı güncelle
+    @Query("SELECT * FROM anime_table")
     suspend fun getAll(): List<AnimeEntity>
+
+    @Query("SELECT id FROM anime_table")
+    suspend fun getAllIds(): List<Int>
+
+    @Query("SELECT * FROM anime_table WHERE listType = :status")
+    suspend fun getByList(status: String): List<AnimeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(anime: AnimeEntity)
