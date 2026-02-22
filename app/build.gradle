@@ -1,9 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.devtools.ksp' // KAPT YERİNE KSP GELDİ
-    id 'dagger.hilt.android.plugin'
+    id 'com.google.devtools.ksp' 
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' // Yedekleme sistemi için eklendi
 }
+
 android {
     namespace 'com.biblinder'
     compileSdk 34
@@ -16,7 +18,6 @@ android {
         versionName "1.0"
     }
 
-    // --- İŞTE SİSTEMİ KURTARAN HAYATİ BLOK BURASI ---
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -25,7 +26,6 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
-    // ------------------------------------------------
 
     buildFeatures {
         compose true
@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    // Temel Android ve Compose Sigorta Kütüphaneleri
+    // Temel Android ve Compose
     implementation "androidx.core:core-ktx:1.12.0"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
     implementation "androidx.activity:activity-compose:1.8.2"
@@ -48,14 +48,14 @@ dependencies {
     implementation "androidx.compose.material3:material3:1.2.0"
     implementation "androidx.navigation:navigation-compose:2.7.7"
 
-   // Room Database
+    // Room Database
     implementation "androidx.room:room-runtime:2.6.1"
     implementation "androidx.room:room-ktx:2.6.1"
-    ksp "androidx.room:room-compiler:2.6.1" // KAPT YERİNE KSP
+    ksp "androidx.room:room-compiler:2.6.1"
 
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:2.48"
-    ksp "com.google.dagger:hilt-compiler:2.48" // KAPT YERİNE KSP
+    ksp "com.google.dagger:hilt-compiler:2.48"
     implementation "androidx.hilt:hilt-navigation-compose:1.1.0"
 
     // Retrofit & Jikan API
@@ -64,4 +64,12 @@ dependencies {
 
     // Image Loading (Coil)
     implementation "io.coil-kt:coil-compose:2.5.0"
+
+    // --- EKSİKLER GİDERİLDİ ---
+    // WorkManager (ScheduleNoti.kt için)
+    implementation "androidx.work:work-runtime-ktx:2.9.0"
+    
+    // Kotlinx Serialization (BackupManager.kt için)
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0"
 }
+
