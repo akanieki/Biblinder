@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.biblinder">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:name=".BiblinderApp"
         android:allowBackup="true"
         android:icon="@android:mipmap/sym_def_app_icon"
         android:label="Biblinder"
+        android:roundIcon="@android:mipmap/sym_def_app_icon"
+        android:supportsRtl="true"
         android:theme="@style/Theme.Material3.Dark.NoActionBar">
-        
         <activity
             android:name=".MainActivity"
             android:exported="true"
