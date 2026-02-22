@@ -1,20 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
-        android:allowBackup="true"
-        android:icon="@android:mipmap/sym_def_app_icon"
-        android:label="Biblinder"
-        android:roundIcon="@android:mipmap/sym_def_app_icon"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Material3.Dark.NoActionBar">
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Material3.Dark.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-</manifest>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Biblinder" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#A3E635</item>
+        <item name="colorOnPrimary">#121212</item>
+        <item name="colorPrimaryContainer">#A3E635</item>
+        <item name="colorOnPrimaryContainer">#121212</item>
+        
+        <item name="android:windowBackground">#121212</item>
+        <item name="android:statusBarColor">#121212</item>
+        <item name="android:navigationBarColor">#121212</item>
+    </style>
+</resources>
