@@ -4,8 +4,10 @@ import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import kotlin.math.abs
@@ -36,7 +38,10 @@ fun SwipeCard(
 ) {
     var offsetX by remember { mutableStateOf(0f) }
     var offsetY by remember { mutableStateOf(0f) }
-    val threshold = 120.dp.toPx()
+
+    // toPx düzeltmesi: LocalDensity ile dp'yi px'e çeviriyoruz
+    val density = LocalDensity.current
+    val threshold = with(density) { 120.dp.toPx() }
 
     Box(
         modifier = modifier
