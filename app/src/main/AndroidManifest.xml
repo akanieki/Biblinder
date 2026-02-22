@@ -6,10 +6,13 @@
         android:label="Biblinder"
         android:roundIcon="@android:mipmap/sym_def_app_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Biblinder"> <activity
+        android:theme="@style/Theme.Biblinder">
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Biblinder"> <intent-filter>
+            android:theme="@style/Theme.Biblinder">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
