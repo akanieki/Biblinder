@@ -25,8 +25,7 @@ fun BiblinderNavGraph(navController: NavHostController) {
         }
 
         composable("lists") {
-            val listsVM: ListsViewModel = hiltViewModel()
-            ListsScreen(viewModel = listsVM)
+            ListsScreen()
         }
 
         composable("tournament") {
