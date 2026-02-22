@@ -26,13 +26,16 @@ data class AnimeData(
 }
 
 interface JikanApiService {
+    // Popüler ve Niş animeleri çekmek için kullanılan ana endpoint (Senin eklediğin filter ile)
     @GET("top/anime")
     suspend fun getTopAnime(
-        @Query("page") page: Int = 1
-    ): JikanResponse<List<AnimeData>>
+        @Query("page") page: Int = 1,
+        @Query("filter") filter: String? = null
+    ): JikanResponse<List<AnimeData>> // ApiResponse yerine projedeki doğru model bağlandı
 
+    // Mood-Based (Ruh haline göre) arama yapmak için kullanılan tür bazlı endpoint
     @GET("anime")
     suspend fun getAnimeByGenre(
         @Query("genres") genreId: Int
-    ): JikanResponse<List<AnimeData>>
+    ): JikanResponse<List<AnimeData>> // ApiResponse yerine projedeki doğru model bağlandı
 }
