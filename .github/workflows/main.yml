@@ -1,4 +1,4 @@
-name: Biblinder APK Generators
+name: Biblinder APK Generator
 on: [push]
 
 jobs:
@@ -13,26 +13,23 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
+          # Cache satırını kaldırdık ki eski hatalı dosyaları tekrar yüklemesin
 
-      # Sistemdeki çok yeni Gradle sürümü yerine uyumlu bir sürüm kuruyoruz
-      - name: Setup Gradle
+      - name: Setup Gradle 8.5
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: 8.5
 
       - name: Build APK
         run: |
-          # Dosyaların ana dizinde (root) olduğunu varsayıyoruz
-          # gradlew dosyasına çalıştırma izni veriyoruz
-          chmod +x gradlew || echo "Gradlew dosyası bulunamadı, sistem gradle denenecek."
+          PROJECT_ROOT=$(find . -name "settings.gradle" -exec dirname {} \;)
+          cd $PROJECT_ROOT
           
-          # Derleme komutu
-          ./gradlew assembleDebug --stacktrace || gradle assembleDebug --stacktrace
+          # Önce her şeyi temizle, sonra derle
+          gradle clean assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Biblinder-Debug-APK
-          # APK'nın üretildiği standart yol
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: "**/app/build/outputs/apk/debug/app-debug.apk"
