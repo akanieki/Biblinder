@@ -1,11 +1,11 @@
 package com.biblinder.data.api
 
+import com.biblinder.data.model.Anime // Az önce oluşturduğumuz ruhu buraya çağırdık
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
-// Jikan API v4 standartlarına uygun modeller
 data class JikanResponse<T>(val data: T)
+
 data class AnimeData(
     val mal_id: Int,
     val title: String,
@@ -15,6 +15,15 @@ data class AnimeData(
 ) {
     data class Images(val jpg: Jpg)
     data class Jpg(val large_image_url: String?)
+
+    // Repository'nin arayıp bulamadığı o hayati fonksiyon!
+    fun toDomain() = Anime(
+        id = mal_id,
+        title = title,
+        synopsis = synopsis ?: "No synopsis available",
+        imageUrl = images.jpg.large_image_url ?: "",
+        malScore = score
+    )
 }
 
 interface JikanApiService {
