@@ -22,7 +22,7 @@ class SeasonWorker(
         if (!hasNotificationPermission()) return
 
         val notification = NotificationCompat.Builder(applicationContext, "biblinder_channel")
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
             .setContentTitle("${anime.title} airs Soon!")
             .setContentText("New episode today")
             .setColor(0xFFA3E635.toInt())
