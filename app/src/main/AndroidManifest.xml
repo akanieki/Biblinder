@@ -6,6 +6,7 @@
         android:label="Biblinder"
         android:roundIcon="@android:mipmap/sym_def_app_icon"
         android:supportsRtl="true"
+        android:name=".BiblinderApplication"
         android:theme="@style/Theme.Biblinder">
 
         <activity
